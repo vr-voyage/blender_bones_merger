@@ -5,7 +5,18 @@ at the same time.
 
 I mainly use this to clean up unused bones on 3D avatars for VRChat.
 
+# Screenshots
+
+**Invoking the menu**
 ![Merge with Active](Menu.png)
+
+**Results afterward**
+![Results after](After.png)
+
+**Testing in Pose mode**
+![Posing after](After-Pose.png)
+
+*Model in the photo : [RRRR by 広い部屋](https://booth.pm/ja/items/2019040)*
 
 The tool will add a 'Merge with active' option to the Bones Context menu
 in when **Edit**ing an Armature.  
