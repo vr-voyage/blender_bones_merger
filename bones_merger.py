@@ -137,7 +137,7 @@ def register():
 
 def unregister():
     bpy.utils.unregister_class(MyyBonesMergerOperator)
-    bpy.types.VIEW3D_MT_mesh_add.remove(menu_func)
+    bpy.types.VIEW3D_MT_armature_context_menu.remove(menu_func)
 
 if __name__ == "__main__":
     register()
