@@ -8,13 +8,13 @@ I mainly use this to clean up unused bones on 3D avatars for VRChat.
 # Screenshots
 
 **Invoking the menu**
-![Merge with Active](Menu.png)
+![Merge with Active](screenshots/Menu.png)
 
 **Results afterward**
-![Results after](After.png)
+![Results after](screenshots/After.png)
 
 **Testing in Pose mode**
-![Posing after](After-Pose.png)
+![Posing after](screenshots/After-Pose.png)
 
 *Model in the photo : [RRRR by 広い部屋](https://booth.pm/ja/items/2019040)*
 
@@ -32,15 +32,15 @@ of the removed bones.
 * Download the latest release Zip file.
 * Open Blender
 * Open the Preferences panel (Edit > Preferences)  
-![Open the Preferences panel](Install-1.png)
+![Open the Preferences panel](screenshots/Install-1.png)
 * Select Add-on in the left pane of this panel  
 * On the upper-right of this panel, click on 'Install...'
-![In Preferences, select Add-ons and click on Install](Install-2.png)
+![In Preferences, select Add-ons and click on Install](screenshots/Install-2.png)
 * Select the downloaded Zip file
-![Select the downloaded Zip file](Install-3.png)
+![Select the downloaded Zip file](screenshots/Install-3.png)
 * Check the 'Rigging: Merge bones with Vertex Groups' checkbox
-![Check the 'Rigging: Merge bones with Vertex Groups' checkbox](Install-4.png)
-![Check the 'Rigging: Merge bones with Vertex Groups' checkbox](Install-5.png)
+![Check the 'Rigging: Merge bones with Vertex Groups' checkbox](screenshots/Install-5.png)
+![Check the 'Rigging: Merge bones with Vertex Groups' checkbox](screenshots/Install-6.png)
 
 Now the Add-on is ready to be used
 
