@@ -4,7 +4,7 @@ bl_info = {
     "description": "Merge selected bones with active",
     "location": "View3D > Armature > Merge bones with active",
     "category": "Rigging",
-    "support": "TESTING",
+    "support": "COMMUNITY",
     "version": (1, 0),
     "blender": (2, 80, 0),
     "warning": "",
