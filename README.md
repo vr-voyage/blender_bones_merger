@@ -96,6 +96,20 @@ ever before or after using "Merge bones with active".
 
 私は普段、3DモデルをVRCHAT用に最適化するためこのツールを使っています。
 
+# 説明動画
+
+## 使い方 
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gIVQNNsAocI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
+## 紹介動画
+
+<p align="center">
+<iframe width="560" height="315" src="https://www.youtube.com/watch?v=EwgADxojTj8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</p>
+
 # 使い方
 
 まずは、アーマチュア編集モードに切り替えます。
