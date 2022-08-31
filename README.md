@@ -3,6 +3,8 @@
 This tool add an option to the Armature "Edit Mode" context menu, in order
 to merge bones **and** their respective weight paint in one operation.
 
+Currently the tool is still limited to armature linked to one Mesh. 
+
 I mainly use this to clean up unused bones on 3D avatars for VRChat.
 
 # Screenshots
@@ -79,3 +81,44 @@ over the place. In such situations, changing the bone size would just lead
 to oversized bones that just hinders the editing process.  
 If you want to change the size of the bones, you'll have to do it manually,
 ever before or after using "Merge bones with active".
+
+
+---
+
+日本語版
+
+# 概要
+
+このAddonはアーマチュアを編集する時に、ボーンと関連のウェイトペイントを一気に結合できるように、
+新しいオペレーターを追加します。
+
+現在、アーマチュアに二個以上のMeshが付けている場合で、このツールは使うことが出来ません。
+
+私は普段、3DモデルをVRCHAT用に最適化するためこのツールを使っています。
+
+# 使い方
+
+まずは、アーマチュア編集モードに切り替えます。
+
+そして：
+1. 最初に消したいボーンを選択します。
+2. 最後にウェイトペイントの情報を受け取るボーンを選択します。
+3. そして、右クリックのメニューから「アクティブ・ボーンと結合」を選びます。
+
+詳細は説明動画をご覧ください。
+
+# インストール方法
+
+* 最新のリリース（Zipファイル）をダウンロードします。
+* Blenderを開きます。
+* **編集 > プリファレンス**の画面を開きます。 
+* プリファレンス画面で、左にある「アドオン」をクリックします。  
+* 右上にある「インストール」ボタンをクリックします。  
+* ダウンロードしたリリースを選びます。  
+* 現れる'Rigging: Merge bones with Vertex Groups' のチェックを入れます。
+
+# クレジット
+
+スクリーンショットに写っているモデル：
+「2A-7-4 / RRRR　ヨツル」by「広い部屋」様
+https://booth.pm/ja/items/2019040
