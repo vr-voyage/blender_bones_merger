@@ -22,7 +22,9 @@ langs = {
         ('*', 'You MUST be in "Edit Armature" mode to use this tool.'): 'このツールはアーマチュア編集モードでしか使えません。',
         ('*', 'No associated Mesh. Forgot to add the Armature modifier ? Is the armature modifier using Vertex groups ?'): 'アーマチュアと繋がるMeshがありません。アーマチュア・モディファイアを忘れましたか？バインド先：頂点グループのチェックを入れましたか？',
         ('*', 'The active bone has no vertex group associated. Create it before.'): 'アクティブボーンの同名頂点グループが存在しません。そのグループを追加してください。',
-        ('*', "This tool doesn't work with Mirror X enabled.\nDisable it by clicking on the X near butterfly icon at the top right of the 3D view."): "X軸ミラーの状態で使えません。3Dビューの右上の蝶々アイコンで、X軸ミラーを無効してください。"
+        ('*', "This tool doesn't work with Mirror X enabled.\nDisable it by clicking on the X near butterfly icon at the top right of the 3D view."): "X軸ミラーの状態で使えません。3Dビューの右上の蝶々アイコンで、X軸ミラーを無効してください。",
+        ('*', "No vertex groups named like the Active Bone were found. Create it before using this operator."): "すべての関連Meshで\nアクティブ・ボーンの同じ名前を持つ頂点グループが存在することを確認してください。",
+        ('*', "Currently, this tool doesn't work when two or more meshes are bound to the same Armature."): "現在、アーマチュアに二個以上のMeshが付けている場合で、このツールは使うことが出来ません。"
     }
 }
 
@@ -97,6 +99,10 @@ class VoyageVRSNSBonesMergerOperator(bpy.types.Operator):
             self.print_error('No associated Mesh. Forgot to add the Armature modifier ? Is the armature modifier using Vertex groups ?')
             return {'FINISHED'}
 
+        if len(meshes) > 1:
+            self.print_error("Currently, this tool doesn't work when two or more meshes are bound to the same Armature.")
+            return {'FINISHED'}
+
         mesh = meshes[0]
 
         # Get the current active bone
@@ -105,15 +111,17 @@ class VoyageVRSNSBonesMergerOperator(bpy.types.Operator):
         # This will have to be defined through a UI...
         target_vertex_group_name = active_bone.name
 
+        # Preliminary check
         # Quit if the mesh have no such vertex group actually
         if target_vertex_group_name not in mesh.vertex_groups:
-            self.print_error('The active bone has no vertex group associated. Create it before.')
+            self.print_error('No vertex groups named like the Active Bone were found. Create it before using this operator.')
             return {'FINISHED'}
 
+        # Perform the operation
         # Get the targeted VertexGroup object
         target_vertex_group = mesh.vertex_groups[target_vertex_group_name]
 
-        ## Generate the vertex groups
+        ## Generate the vertex groups cache
         # We'll manage the cache with a fixed size array
         cached_groups = [set() for _ in range(len(mesh.vertex_groups))]
 
