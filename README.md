@@ -100,15 +100,11 @@ ever before or after using "Merge bones with active".
 
 ## 使い方 
 
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/gIVQNNsAocI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+[![使い方を説明する動画](https://img.youtube.com/vi/gIVQNNsAocI/0.jpg)](https://www.youtube.com/watch?v=gIVQNNsAocI)
 
 ## 紹介動画
 
-<p align="center">
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=EwgADxojTj8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</p>
+[![作業をしながらアドオンを紹介する動画](https://img.youtube.com/vi/EwgADxojTj8/0.jpg)](https://www.youtube.com/watch?v=EwgADxojTj8)
 
 # 使い方
 
