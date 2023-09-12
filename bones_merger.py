@@ -56,7 +56,7 @@ class VoyageVRSNSBonesMergerOperator(bpy.types.Operator):
     # Since the linking is done through Modifiers,
     # I'll check for the ArmatureModifier of each object,
     # when applicable.
-    def get_associated_meshes(self, armature) -> list[bpy.types.Object]:
+    def get_associated_meshes(self, armature) -> list:
         associated_meshes = []
         for o in bpy.context.selectable_objects:
             if o.type != 'MESH':
