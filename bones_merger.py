@@ -2,8 +2,8 @@ import bpy
 
 bl_info = {
     "author": "Voyage (VRSNS)",
-    "name": "Adds the ability to merge bones and Vertex Groups in one click",
-    "description": "Merge selected bones with active",
+    "name": "Voyage Bones Merger",
+    "description": "Merge selected bones and their vertex groups with the active bone",
     "location": "Armature Context Menu > Merge with active",
     "category": "Rigging",
     "support": "COMMUNITY",
@@ -23,7 +23,7 @@ langs = {
         ('*', 'No associated Mesh. Forgot to add the Armature modifier ? Is the armature modifier using Vertex groups ?'): 'アーマチュアと繋がるMeshがありません。アーマチュア・モディファイアを忘れましたか？バインド先：頂点グループのチェックを入れましたか？',
         ('*', 'The active bone has no vertex group associated. Create it before.'): 'アクティブボーンの同名頂点グループが存在しません。そのグループを追加してください。',
         ('*', "This tool doesn't work with Mirror X enabled.\nDisable it by clicking on the X near butterfly icon at the top right of the 3D view."): "X軸ミラーの状態で使えません。3Dビューの右上の蝶々アイコンで、X軸ミラーを無効してください。",
-        ('*', "No vertex groups named like the Active Bone were found. Create it before using this operator."): "すべての関連Meshで\nアクティブ・ボーンの同じ名前を持つ頂点グループが存在することを確認してください。",
+        ('*', "No vertex groups named like the Active bone were found. Create it before using this operator."): "すべての関連Meshで\nアクティブ・ボーンの同じ名前を持つ頂点グループが存在することを確認してください。",
         ('*', "Currently, this tool doesn't work when two or more meshes are bound to the same Armature."): "現在、アーマチュアに二個以上のMeshが付けている場合で、このツールは使うことが出来ません。"
     }
 }
@@ -81,14 +81,14 @@ class VoyageVRSNSBonesMergerOperator(bpy.types.Operator):
         # bones, and their associated armature
         if bpy.context.mode != 'EDIT_ARMATURE':
             self.print_error('You MUST be in "Edit Armature" mode to use this tool.')
-            return {'FINISHED'}
+            return {'CANCELLED'}
 
         # Get the selected armature
         armature = bpy.context.active_object
 
         if armature.data.use_mirror_x:
             self.print_error("This tool doesn't work with Mirror X enabled.\nDisable it by clicking on the X near butterfly icon at the top right of the 3D view.")
-            return {'FINISHED'}
+            return {'CANCELLED'}
 
         # Get the associated Mesh
         meshes = self.get_associated_meshes(armature)
@@ -97,7 +97,7 @@ class VoyageVRSNSBonesMergerOperator(bpy.types.Operator):
         # with this armature
         if not meshes or len(meshes) == 0:
             self.print_error('No associated Mesh. Forgot to add the Armature modifier ? Is the armature modifier using Vertex groups ?')
-            return {'FINISHED'}
+            return {'CANCELLED'}
 
         no_vertex_groups = True
         
@@ -109,13 +109,16 @@ class VoyageVRSNSBonesMergerOperator(bpy.types.Operator):
             target_vertex_group_name = active_bone.name
     
             # Preliminary check
-            # Quit if the mesh have no such vertex group actually
+            # We can continue if at least one mesh has the right vertex group
             if target_vertex_group_name in mesh.vertex_groups:
                 no_vertex_groups = False
+                break
         
         if no_vertex_groups:
-            self.print_error('No vertex groups named like the Active Bone were found. Create it before using this operator.')
-            return {'FINISHED'}
+            self.print_error('No vertex groups named like the Active bone were found. Create it before using this operator.')
+            return {'CANCELLED'}
+        
+        
 
         for mesh in meshes:
             # Get the current active bone
@@ -124,15 +127,25 @@ class VoyageVRSNSBonesMergerOperator(bpy.types.Operator):
             # This will have to be defined through a UI...
             target_vertex_group_name = active_bone.name
     
+            # We're sure that at least one mesh contains the right
+            # target vertex group, since we checked earlier in this
+            # method.
+            #
+            # But, we're not sure that EVERY mesh contains the target
+            # vertex group.
+            #
+            # So if any mesh is lacking this vertex group, we add it.
+            #
+            # If we don't add it, these meshes are just going to
+            # lose all the selected bones and the vertex paint,
+            # without anything in exchange.
             if target_vertex_group_name not in mesh.vertex_groups:
-                continue
+                mesh.vertex_groups.new(name=target_vertex_group_name)
     
             # Perform the operation
             # Get the targeted VertexGroup object
             target_vertex_group = mesh.vertex_groups[target_vertex_group_name]
             
-            
-    
             ## Generate the vertex groups cache
             # We'll manage the cache with a fixed size array
             cached_groups = [set() for _ in range(len(mesh.vertex_groups))]
@@ -164,9 +177,6 @@ class VoyageVRSNSBonesMergerOperator(bpy.types.Operator):
     
             for vertex_group in vertex_groups_to_remove:
                 mesh.vertex_groups.remove(vertex_group)
-        
-        
-        
         
         active_bone.select = False
         bpy.ops.armature.delete()

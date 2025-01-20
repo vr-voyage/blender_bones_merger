@@ -3,8 +3,6 @@
 This tool add an option to the Armature "Edit Mode" context menu, in order
 to merge bones **and** their respective weight paint in one operation.
 
-Currently the tool is still limited to armature linked to one Mesh. 
-
 I mainly use this to clean up unused bones on 3D avatars for VRChat.
 
 # Screenshots
@@ -92,9 +90,7 @@ ever before or after using "Merge bones with active".
 このAddonはアーマチュアを編集する時に、ボーンと関連のウェイトペイントを一気に結合できるように、
 新しいオペレーターを追加します。
 
-現在、アーマチュアに二個以上のMeshが付けている場合で、このツールは使うことが出来ません。
-
-私は普段、3DモデルをVRCHAT用に最適化するためこのツールを使っています。
+VRCHATで使用する3Dモデルを最適化するために開発したツールです。
 
 # 説明動画
 
